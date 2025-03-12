@@ -44,7 +44,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted px-4 md:px-6 flex">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted px-4 md:px-6 flex justify-center">
           <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="rounded-full bg-primary p-3">
