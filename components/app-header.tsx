@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
-import { BookOpen, LogOut, Menu, User } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { BookOpen, LogOut, Menu, User } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,33 +12,38 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+} from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export function AppHeader() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [userRole, setUserRole] = useState<string | null>(null)
-  const pathname = usePathname()
-  const router = useRouter()
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState<string | null>(null);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
-    // Verificar se o usuário está logado
-    const loggedIn = localStorage.getItem("isLoggedIn") === "true"
-    const role = localStorage.getItem("userRole")
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const role = localStorage.getItem("userRole");
 
-    setIsLoggedIn(loggedIn)
-    setUserRole(role)
-  }, [pathname])
+    setIsLoggedIn(loggedIn);
+    setUserRole(role);
+  }, [pathname]);
 
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn")
-    localStorage.removeItem("userRole")
-    localStorage.removeItem("userEmail")
-    localStorage.removeItem("userName")
-    setIsLoggedIn(false)
-    setUserRole(null)
-    router.push("/")
-  }
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("userName");
+    setIsLoggedIn(false);
+    setUserRole(null);
+    router.push("/");
+  };
 
   const navItems = [
     ...(userRole === "professor"
@@ -53,14 +58,20 @@ export function AppHeader() {
           { name: "Meu Progresso", href: "/profile" },
         ]
       : []),
-  ]
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex md:mr-6">
           <Link
-            href={isLoggedIn ? (userRole === "professor" ? "/dashboard" : "/solve") : "/"}
+            href={
+              isLoggedIn
+                ? userRole === "professor"
+                  ? "/dashboard"
+                  : "/solve"
+                : "/"
+            }
             className="flex items-center space-x-2"
           >
             <BookOpen className="h-6 w-6" />
@@ -76,7 +87,9 @@ export function AppHeader() {
                 key={item.href}
                 href={item.href}
                 className={`transition-colors hover:text-foreground/80 ${
-                  pathname === item.href ? "text-foreground" : "text-foreground/60"
+                  pathname === item.href
+                    ? "text-foreground"
+                    : "text-foreground/60"
                 }`}
               >
                 {item.name}
@@ -103,14 +116,20 @@ export function AppHeader() {
                   key={item.href}
                   href={item.href}
                   className={`text-sm font-medium transition-colors hover:text-foreground/80 ${
-                    pathname === item.href ? "text-foreground" : "text-foreground/60"
+                    pathname === item.href
+                      ? "text-foreground"
+                      : "text-foreground/60"
                   }`}
                 >
                   {item.name}
                 </Link>
               ))}
               {isLoggedIn && (
-                <Button variant="ghost" className="justify-start px-2" onClick={handleLogout}>
+                <Button
+                  variant="ghost"
+                  className="justify-start px-2"
+                  onClick={handleLogout}
+                >
                   <LogOut className="mr-2 h-4 w-4" />
                   Sair
                 </Button>
@@ -152,6 +171,5 @@ export function AppHeader() {
         </div>
       </div>
     </header>
-  )
+  );
 }
-

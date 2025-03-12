@@ -1,68 +1,79 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { BookOpen, Eye, EyeOff } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { useToast } from "@/hooks/use-toast"
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { BookOpen, Eye, EyeOff } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
 
 export default function LoginPage() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-  })
-  const router = useRouter()
-  const { toast } = useToast()
+  });
+  const router = useRouter();
+  const { toast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
 
     try {
-      // Simulação de login
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // Verificação básica
-      if (formData.email === "professor@example.com" && formData.password === "password") {
-        localStorage.setItem("userRole", "professor")
-        localStorage.setItem("userEmail", formData.email)
-        localStorage.setItem("isLoggedIn", "true")
-        router.push("/dashboard")
-      } else if (formData.email === "aluno@example.com" && formData.password === "password") {
-        localStorage.setItem("userRole", "aluno")
-        localStorage.setItem("userEmail", formData.email)
-        localStorage.setItem("isLoggedIn", "true")
-        router.push("/solve")
+      if (
+        formData.email === "professor@example.com" &&
+        formData.password === "password"
+      ) {
+        localStorage.setItem("userRole", "professor");
+        localStorage.setItem("userEmail", formData.email);
+        localStorage.setItem("isLoggedIn", "true");
+        router.push("/dashboard");
+      } else if (
+        formData.email === "aluno@example.com" &&
+        formData.password === "password"
+      ) {
+        localStorage.setItem("userRole", "aluno");
+        localStorage.setItem("userEmail", formData.email);
+        localStorage.setItem("isLoggedIn", "true");
+        router.push("/solve");
       } else {
         toast({
           title: "Erro de autenticação",
           description: "Email ou senha incorretos",
           variant: "destructive",
-        })
+        });
       }
     } catch (error) {
       toast({
         title: "Erro ao fazer login",
         description: "Ocorreu um erro ao tentar fazer login",
         variant: "destructive",
-      })
+      });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-muted/40 p-4">
@@ -73,7 +84,9 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold">Entrar</CardTitle>
-          <CardDescription>Entre com seu email e senha para acessar sua conta</CardDescription>
+          <CardDescription>
+            Entre com seu email e senha para acessar sua conta
+          </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
@@ -118,7 +131,9 @@ export default function LoginPage() {
                   ) : (
                     <Eye className="h-4 w-4 text-muted-foreground" />
                   )}
-                  <span className="sr-only">{showPassword ? "Esconder senha" : "Mostrar senha"}</span>
+                  <span className="sr-only">
+                    {showPassword ? "Esconder senha" : "Mostrar senha"}
+                  </span>
                 </Button>
               </div>
             </div>
@@ -129,7 +144,10 @@ export default function LoginPage() {
             </Button>
             <div className="text-center text-sm">
               Não tem uma conta?{" "}
-              <Link href="/auth/register" className="text-primary hover:underline">
+              <Link
+                href="/auth/register"
+                className="text-primary hover:underline"
+              >
                 Cadastre-se
               </Link>
             </div>
@@ -142,6 +160,5 @@ export default function LoginPage() {
         <p>Aluno: aluno@example.com / password</p>
       </div>
     </div>
-  )
+  );
 }
-

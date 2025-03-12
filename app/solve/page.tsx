@@ -1,24 +1,31 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Check, ChevronRight, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { useToast } from "@/hooks/use-toast"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Check, ChevronRight, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { useToast } from "@/hooks/use-toast";
 
-// Dados simulados
 const mockQuestions = [
   {
     id: 1,
     title: "Equação do segundo grau",
     category: "Matemática",
     difficulty: "Médio",
-    question: "Qual é a fórmula para resolver uma equação do segundo grau ax² + bx + c = 0?",
+    question:
+      "Qual é a fórmula para resolver uma equação do segundo grau ax² + bx + c = 0?",
     options: [
       "x = (-b ± √(b² - 4ac)) / 2a",
       "x = (-b ± √(b² + 4ac)) / 2a",
@@ -63,22 +70,21 @@ const mockQuestions = [
     options: ["Lisboa", "Barcelona", "Madri", "Valência"],
     correctOption: 2,
   },
-]
+];
 
 export default function SolvePage() {
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [selectedOption, setSelectedOption] = useState<number | null>(null)
-  const [isAnswered, setIsAnswered] = useState(false)
-  const [correctAnswers, setCorrectAnswers] = useState(0)
-  const [totalAnswered, setTotalAnswered] = useState(0)
-  const [userName, setUserName] = useState("")
-  const { toast } = useToast()
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [totalAnswered, setTotalAnswered] = useState(0);
+  const [userName, setUserName] = useState("");
+  const { toast } = useToast();
 
   useEffect(() => {
-    // Obter nome do usuário do localStorage
-    const name = localStorage.getItem("userName") || "Aluno"
-    setUserName(name)
-  }, [])
+    const name = localStorage.getItem("userName") || "Aluno";
+    setUserName(name);
+  }, []);
 
   const handleAnswer = () => {
     if (selectedOption === null) {
@@ -86,41 +92,42 @@ export default function SolvePage() {
         title: "Selecione uma opção",
         description: "Você precisa selecionar uma resposta antes de confirmar.",
         variant: "destructive",
-      })
-      return
+      });
+      return;
     }
 
-    setIsAnswered(true)
-    setTotalAnswered((prev) => prev + 1)
+    setIsAnswered(true);
+    setTotalAnswered((prev) => prev + 1);
 
     if (selectedOption === mockQuestions[currentQuestion].correctOption) {
-      setCorrectAnswers((prev) => prev + 1)
+      setCorrectAnswers((prev) => prev + 1);
     }
-  }
+  };
 
   const handleNext = () => {
-    setSelectedOption(null)
-    setIsAnswered(false)
+    setSelectedOption(null);
+    setIsAnswered(false);
 
     if (currentQuestion < mockQuestions.length - 1) {
-      setCurrentQuestion((prev) => prev + 1)
+      setCurrentQuestion((prev) => prev + 1);
     } else {
-      // Voltar para a primeira questão quando terminar
-      setCurrentQuestion(0)
+      setCurrentQuestion(0);
       toast({
         title: "Parabéns!",
         description: "Você completou todas as questões disponíveis.",
-      })
+      });
     }
-  }
+  };
 
-  const question = mockQuestions[currentQuestion]
+  const question = mockQuestions[currentQuestion];
 
   return (
     <div className="container max-w-4xl p-4 py-6 md:p-8">
       <div className="mb-6">
         <h1 className="text-3xl font-bold tracking-tight">Resolver Questões</h1>
-        <p className="text-muted-foreground">Olá, {userName}! Responda as questões e receba feedback imediato.</p>
+        <p className="text-muted-foreground">
+          Olá, {userName}! Responda as questões e receba feedback imediato.
+        </p>
       </div>
 
       <div className="mb-6 flex flex-col gap-2">
@@ -132,7 +139,9 @@ export default function SolvePage() {
             Acertos: {correctAnswers}/{totalAnswered}
           </div>
         </div>
-        <Progress value={((currentQuestion + 1) / mockQuestions.length) * 100} />
+        <Progress
+          value={((currentQuestion + 1) / mockQuestions.length) * 100}
+        />
       </div>
 
       <Card>
@@ -147,8 +156,8 @@ export default function SolvePage() {
                   question.difficulty === "Fácil"
                     ? "border-green-500 text-green-500"
                     : question.difficulty === "Médio"
-                      ? "border-yellow-500 text-yellow-500"
-                      : "border-red-500 text-red-500"
+                    ? "border-yellow-500 text-yellow-500"
+                    : "border-red-500 text-red-500"
                 }
               >
                 {question.difficulty}
@@ -160,7 +169,9 @@ export default function SolvePage() {
         <CardContent>
           <RadioGroup
             value={selectedOption?.toString() || ""}
-            onValueChange={(value) => !isAnswered && setSelectedOption(Number.parseInt(value))}
+            onValueChange={(value) =>
+              !isAnswered && setSelectedOption(Number.parseInt(value))
+            }
             className="space-y-3"
           >
             {question.options.map((option, index) => (
@@ -169,19 +180,32 @@ export default function SolvePage() {
                 className={`flex items-center space-x-2 rounded-md border p-3 ${
                   isAnswered && index === question.correctOption
                     ? "border-green-500 bg-green-50 dark:bg-green-950/20"
-                    : isAnswered && index === selectedOption && index !== question.correctOption
-                      ? "border-red-500 bg-red-50 dark:bg-red-950/20"
-                      : ""
+                    : isAnswered &&
+                      index === selectedOption &&
+                      index !== question.correctOption
+                    ? "border-red-500 bg-red-50 dark:bg-red-950/20"
+                    : ""
                 }`}
               >
-                <RadioGroupItem value={index.toString()} id={`option-${index}`} disabled={isAnswered} />
-                <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer font-normal">
+                <RadioGroupItem
+                  value={index.toString()}
+                  id={`option-${index}`}
+                  disabled={isAnswered}
+                />
+                <Label
+                  htmlFor={`option-${index}`}
+                  className="flex-1 cursor-pointer font-normal"
+                >
                   {option}
                 </Label>
-                {isAnswered && index === question.correctOption && <Check className="h-5 w-5 text-green-500" />}
-                {isAnswered && index === selectedOption && index !== question.correctOption && (
-                  <X className="h-5 w-5 text-red-500" />
+                {isAnswered && index === question.correctOption && (
+                  <Check className="h-5 w-5 text-green-500" />
                 )}
+                {isAnswered &&
+                  index === selectedOption &&
+                  index !== question.correctOption && (
+                    <X className="h-5 w-5 text-red-500" />
+                  )}
               </div>
             ))}
           </RadioGroup>
@@ -191,7 +215,9 @@ export default function SolvePage() {
             <Button onClick={handleAnswer}>Responder</Button>
           ) : (
             <Button onClick={handleNext}>
-              {currentQuestion < mockQuestions.length - 1 ? "Próxima Questão" : "Recomeçar"}
+              {currentQuestion < mockQuestions.length - 1
+                ? "Próxima Questão"
+                : "Recomeçar"}
               <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           )}
@@ -204,6 +230,5 @@ export default function SolvePage() {
         </Link>
       </div>
     </div>
-  )
+  );
 }
-

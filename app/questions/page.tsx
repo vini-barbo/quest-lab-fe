@@ -1,10 +1,16 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Edit, Plus, Trash2 } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Edit, Plus, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,13 +18,18 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { useToast } from "@/hooks/use-toast"
+} from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/hooks/use-toast";
 
-// Dados simulados
 const mockQuestions = [
   {
     id: 1,
@@ -62,57 +73,57 @@ const mockQuestions = [
     difficulty: "Difícil",
     createdAt: "2023-10-03",
   },
-]
+];
 
 export default function QuestionsPage() {
-  const [questions, setQuestions] = useState(mockQuestions)
-  const [filteredQuestions, setFilteredQuestions] = useState(mockQuestions)
-  const [categoryFilter, setCategoryFilter] = useState("all")
-  const [difficultyFilter, setDifficultyFilter] = useState("all")
-  const [searchQuery, setSearchQuery] = useState("")
-  const { toast } = useToast()
+  const [questions, setQuestions] = useState(mockQuestions);
+  const [filteredQuestions, setFilteredQuestions] = useState(mockQuestions);
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [difficultyFilter, setDifficultyFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const { toast } = useToast();
 
-  // Aplicar filtros
   useEffect(() => {
-    let filtered = [...questions]
+    let filtered = [...questions];
 
     if (categoryFilter !== "all") {
-      filtered = filtered.filter((q) => q.category === categoryFilter)
+      filtered = filtered.filter((q) => q.category === categoryFilter);
     }
 
     if (difficultyFilter !== "all") {
-      filtered = filtered.filter((q) => q.difficulty === difficultyFilter)
+      filtered = filtered.filter((q) => q.difficulty === difficultyFilter);
     }
 
     if (searchQuery) {
       filtered = filtered.filter(
         (q) =>
           q.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          q.category.toLowerCase().includes(searchQuery.toLowerCase()),
-      )
+          q.category.toLowerCase().includes(searchQuery.toLowerCase())
+      );
     }
 
-    setFilteredQuestions(filtered)
-  }, [questions, categoryFilter, difficultyFilter, searchQuery])
+    setFilteredQuestions(filtered);
+  }, [questions, categoryFilter, difficultyFilter, searchQuery]);
 
   const handleDelete = (id: number) => {
-    setQuestions(questions.filter((q) => q.id !== id))
+    setQuestions(questions.filter((q) => q.id !== id));
     toast({
       title: "Questão excluída",
       description: "A questão foi excluída com sucesso",
-    })
-  }
+    });
+  };
 
-  // Extrair categorias únicas
-  const categories = Array.from(new Set(questions.map((q) => q.category)))
-  const difficulties = ["Fácil", "Médio", "Difícil"]
+  const categories = Array.from(new Set(questions.map((q) => q.category)));
+  const difficulties = ["Fácil", "Médio", "Difícil"];
 
   return (
     <div className="container space-y-6 p-4 py-6 md:p-8">
       <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Questões</h1>
-          <p className="text-muted-foreground">Gerencie suas questões e crie novas.</p>
+          <p className="text-muted-foreground">
+            Gerencie suas questões e crie novas.
+          </p>
         </div>
         <Link href="/questions/create">
           <Button>
@@ -190,7 +201,10 @@ export default function QuestionsPage() {
                     <DropdownMenuLabel>Ações</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>
-                      <Link href={`/questions/${question.id}`} className="flex w-full cursor-pointer items-center">
+                      <Link
+                        href={`/questions/${question.id}`}
+                        className="flex w-full cursor-pointer items-center"
+                      >
                         <Edit className="mr-2 h-4 w-4" />
                         Editar
                       </Link>
@@ -205,7 +219,10 @@ export default function QuestionsPage() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
-              <CardDescription>Criada em {new Date(question.createdAt).toLocaleDateString("pt-BR")}</CardDescription>
+              <CardDescription>
+                Criada em{" "}
+                {new Date(question.createdAt).toLocaleDateString("pt-BR")}
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-2">
@@ -216,8 +233,8 @@ export default function QuestionsPage() {
                     question.difficulty === "Fácil"
                       ? "border-green-500 text-green-500"
                       : question.difficulty === "Médio"
-                        ? "border-yellow-500 text-yellow-500"
-                        : "border-red-500 text-red-500"
+                      ? "border-yellow-500 text-yellow-500"
+                      : "border-red-500 text-red-500"
                   }
                 >
                   {question.difficulty}
@@ -232,7 +249,10 @@ export default function QuestionsPage() {
         <div className="flex h-[200px] w-full flex-col items-center justify-center rounded-md border border-dashed">
           <p className="text-sm text-muted-foreground">
             Nenhuma questão encontrada. Tente ajustar os filtros ou{" "}
-            <Link href="/questions/create" className="text-primary hover:underline">
+            <Link
+              href="/questions/create"
+              className="text-primary hover:underline"
+            >
               crie uma nova questão
             </Link>
             .
@@ -240,6 +260,5 @@ export default function QuestionsPage() {
         </div>
       )}
     </div>
-  )
+  );
 }
-

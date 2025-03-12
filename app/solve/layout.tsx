@@ -1,18 +1,17 @@
-import type React from "react"
-import { AppHeader } from "@/components/app-header"
-import { redirect } from "next/navigation"
+import type React from "react";
+import { AppHeader } from "@/components/app-header";
+import { redirect } from "next/navigation";
 
 export default function SolveLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  // Nota: Em produção, esta verificação seria feita no servidor
   if (typeof window !== "undefined") {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
     if (!isLoggedIn) {
-      redirect("/auth/login")
+      redirect("/auth/login");
     }
   }
 
@@ -21,6 +20,5 @@ export default function SolveLayout({
       <AppHeader />
       <main className="flex-1">{children}</main>
     </div>
-  )
+  );
 }
-
