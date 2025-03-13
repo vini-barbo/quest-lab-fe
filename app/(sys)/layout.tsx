@@ -23,9 +23,9 @@ export default function DashboardLayout({
 
   return (
     <div className="">
-      <main className="flex flex-col md:flex-row h-[100dvh] w-[100dvw] gap-2">
+      <main className="flex flex-col md:flex-row h-[100dvh] w-[100dvw] gap-2 overflow-y-scroll">
         <AppSidebar />
-        {children}
+        <div className="w-full h-full overflow-scroll">{children}</div>
       </main>
     </div>
   );

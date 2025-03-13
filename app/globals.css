@@ -68,3 +68,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer {
+  .app-main {
+    @apply flex flex-col w-full p-4 gap-5;
+  }
+}

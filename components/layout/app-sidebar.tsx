@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useNavItems } from "./app-hook-links";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { LogOut, Menu } from "lucide-react";
+import { LogOut, Menu, Settings } from "lucide-react";
 import { LogOutIcon } from "lucide-react";
 import {
   Sheet,
@@ -34,8 +34,8 @@ export function AppSidebar() {
   };
 
   return (
-    <aside className="md:h-full md:bg-primary  ">
-      <nav className="flex justify-between items-center bg-primary px-2 py-4 md:hidden">
+    <aside className="md:h-full md:bg-primary  md:sticky ">
+      <nav className=" flex justify-between items-center bg-primary px-2 py-4 md:hidden">
         <Sheet>
           <SheetTrigger
             asChild
@@ -79,9 +79,20 @@ export function AppSidebar() {
               )}
               <hr />
               <Link
+                href="/settings"
+                className="flex gap-1 hover:!text-primary  hover:!bg-white !text-white rounded p-2
+              items-center
+              justify-between text-sm font-medium transition-colors"
+              >
+                Opções
+                <Settings />
+              </Link>
+              <Link
                 href="/"
                 className="flex gap-1  p-2
+                hover:!text-primary  hover:!bg-white !text-white
               items-center
+              rounded
               justify-between text-sm font-medium transition-colors"
               >
                 Sair
@@ -112,7 +123,7 @@ export function AppSidebar() {
         </Link>
       </nav>
       <hr className="md:hidden" />
-      <nav className="flex-col gap-2 h-full justify-between hidden md:!flex  px-2 py-4">
+      <nav className="flex-col gap-2 h-full justify-between hidden md:!flex  px-2 py-4 sticky">
         <section className="flex flex-col gap-2">
           <Link
             href={"item.href"}
@@ -154,6 +165,15 @@ export function AppSidebar() {
         </section>
         <section className="flex flex-col gap-2">
           <hr />
+          <Link
+            href="/settings"
+            className="flex gap-1 hover:!text-primary  hover:!bg-white !text-white rounded p-2
+              items-center
+              justify-between text-sm font-medium transition-colors"
+          >
+            Opções
+            <Settings />
+          </Link>
           <Link
             href="/"
             className="flex gap-1 hover:!text-primary  hover:!bg-white !text-white rounded p-2
