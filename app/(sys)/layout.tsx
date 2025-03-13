@@ -1,6 +1,7 @@
 import type React from "react";
-import { AppHeader } from "@/components/app-header";
+import { AppHeader } from "@/components/layout/app-header";
 import { redirect } from "next/navigation";
+import { AppSidebar } from "@/components/layout/app-sidebar";
 
 export default function DashboardLayout({
   children,
@@ -21,9 +22,11 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <AppHeader />
-      <main className="flex-1">{children}</main>
+    <div className="">
+      <main className="flex flex-col md:flex-row h-[100dvh] w-[100dvw] gap-2">
+        <AppSidebar />
+        {children}
+      </main>
     </div>
   );
 }

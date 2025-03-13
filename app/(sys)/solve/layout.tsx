@@ -1,5 +1,5 @@
 import type React from "react";
-import { AppHeader } from "@/components/app-header";
+import { AppHeader } from "@/components/layout/app-header";
 import { redirect } from "next/navigation";
 
 export default function SolveLayout({
