@@ -14,14 +14,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function AppSidebar() {
   const pathname = usePathname();
   const { navItems } = useNavItems();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userRole, setUserRole] = useState<string | null>(null);
 
   const router = useRouter();
   const handleLogout = () => {
@@ -34,9 +33,17 @@ export function AppSidebar() {
     router.push("/");
   };
 
-  const name = "Usuário";
-  const email = localStorage.getItem("userEmail") || "usuario@example.com";
-  const role = localStorage.getItem("userRole") || "aluno";
+  const [userName, setUserName] = useState<string | null>(null);
+  const [userRole, setUserRole] = useState<string | null>(null);
+  const [userEmail, setUserEmail] = useState<string>("usuario@example.com");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsLoggedIn(!!localStorage.getItem("isLoggedIn"));
+      setUserRole(localStorage.getItem("userRole") || "aluno");
+      setUserEmail(localStorage.getItem("userEmail") || "usuario@example.com");
+    }
+  }, []);
 
   return (
     <aside className="md:h-full md:bg-primary  md:sticky ">
@@ -121,8 +128,8 @@ export function AppSidebar() {
               className="h-10 aspect-square rounded-full"
             />
             <div>
-              <h1 className="text-base ">{name}</h1>
-              <h2 className="text-gray-300 text-sm ">{role}</h2>
+              <h1 className="text-base ">{userName}</h1>
+              <h2 className="text-gray-300 text-sm ">{userRole}</h2>
             </div>
           </div>
         </Link>
@@ -145,8 +152,8 @@ export function AppSidebar() {
                 className="h-10 aspect-square rounded-full"
               />
               <div>
-                <h1 className="text-base">{name}</h1>
-                <h2 className="text-gray-300 text-sm text-clip">{role}</h2>
+                <h1 className="text-base">{userName}</h1>
+                <h2 className="text-gray-300 text-sm text-clip">{userRole}</h2>
               </div>
             </div>
           </Link>
