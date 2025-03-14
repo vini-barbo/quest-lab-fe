@@ -33,10 +33,7 @@ export function useNavItems() {
         ]
       : []),
     ...(userRole === "aluno"
-      ? [
-          ...commonNavItems,
-          { name: "Progresso", href: "/perfil", icon: <User /> },
-        ]
+      ? [...commonNavItems, { name: "perfil", href: "/perfil", icon: <User /> }]
       : []),
   ];
 

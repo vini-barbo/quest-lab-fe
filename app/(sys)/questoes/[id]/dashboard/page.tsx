@@ -281,7 +281,7 @@ export default function QuestionStatsPage() {
           <Button
             variant="outline"
             size="icon"
-            onClick={() => router.push("/questions")}
+            onClick={() => router.push("/questoes")}
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
@@ -752,7 +752,7 @@ export default function QuestionStatsPage() {
                           variant="outline"
                           size="sm"
                           onClick={() =>
-                            router.push(`/questions/${question.id}/stats`)
+                            router.push(`/questoes/${question.id}/dashboard`)
                           }
                         >
                           Ver

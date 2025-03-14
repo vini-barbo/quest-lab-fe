@@ -34,6 +34,10 @@ export function AppSidebar() {
     router.push("/");
   };
 
+  const name = "Usuário";
+  const email = localStorage.getItem("userEmail") || "usuario@example.com";
+  const role = localStorage.getItem("userRole") || "aluno";
+
   return (
     <aside className="md:h-full md:bg-primary  md:sticky ">
       <nav className=" flex justify-between items-center bg-primary px-2 py-4 md:hidden">
@@ -103,7 +107,7 @@ export function AppSidebar() {
           </SheetContent>
         </Sheet>
         <Link
-          href={"item.href"}
+          href={"/configuracao"}
           className={`flex gap-1 hover:!text-primary  bg-primary hover:!bg-white !text-white rounded p-2
               items-center
               justify-between text-sm font-medium transition-colors hover:text-foreground/80 `}
@@ -117,8 +121,8 @@ export function AppSidebar() {
               className="h-10 aspect-square rounded-full"
             />
             <div>
-              <h1 className="text-base">Nome</h1>
-              <h2 className="text-gray-300 text-sm">Cargo</h2>
+              <h1 className="text-base ">{name}</h1>
+              <h2 className="text-gray-300 text-sm ">{role}</h2>
             </div>
           </div>
         </Link>
@@ -127,12 +131,12 @@ export function AppSidebar() {
       <nav className="flex-col gap-2 h-full justify-between hidden md:!flex  px-2 py-4 sticky">
         <section className="flex flex-col gap-2">
           <Link
-            href={"item.href"}
-            className={`flex gap-1 !text-white rounded p-2 px-5
+            href={"/configuracao"}
+            className={`flex gap-1 !text-white rounded p-y w-full
               items-center
               justify-between text-sm font-medium transition-colors`}
           >
-            <div className="flex gap-2 items-center ">
+            <div className="flex gap-2 w-full justify-between px-2">
               <Image
                 src="https://avatars.githubusercontent.com/u/62946143?v=4"
                 alt="Quest Lab Icon"
@@ -141,11 +145,12 @@ export function AppSidebar() {
                 className="h-10 aspect-square rounded-full"
               />
               <div>
-                <h1 className="text-base">Nome</h1>
-                <h2 className="text-gray-300 text-sm">Cargo</h2>
+                <h1 className="text-base">{name}</h1>
+                <h2 className="text-gray-300 text-sm text-clip">{role}</h2>
               </div>
             </div>
           </Link>
+
           <hr />
           {navItems.map((item) => (
             <Link

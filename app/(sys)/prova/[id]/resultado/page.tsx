@@ -44,13 +44,14 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 
+// Dados simulados da prova
 const mockExam = {
   id: 1,
   title: "Simulado Nacional de Matemática",
   subject: "Matemática",
   createdDate: "2024-05-01",
   dueDate: "2024-06-15",
-  duration: 120,
+  duration: 120, // minutos
   questionsCount: 30,
   difficulty: "Médio",
   classes: [
@@ -206,6 +207,7 @@ export default function ExamResultsPage() {
   });
   const [filteredStudents, setFilteredStudents] = useState(mockExam.students);
 
+  // Estatísticas calculadas
   const totalStudents = exam.students.length;
   const approvedStudents = exam.students.filter(
     (student) => student.status === "approved"
@@ -216,9 +218,11 @@ export default function ExamResultsPage() {
       totalStudents
   );
 
+  // Aplicar filtros e ordenação
   useEffect(() => {
     let filtered = [...exam.students];
 
+    // Filtrar por termo de busca
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter((student) =>
@@ -226,14 +230,17 @@ export default function ExamResultsPage() {
       );
     }
 
+    // Filtrar por turma
     if (classFilter !== "all") {
       filtered = filtered.filter((student) => student.class === classFilter);
     }
 
+    // Filtrar por status
     if (statusFilter !== "all") {
       filtered = filtered.filter((student) => student.status === statusFilter);
     }
 
+    // Aplicar ordenação
     filtered.sort((a, b) => {
       if (a[sortConfig.key] < b[sortConfig.key]) {
         return sortConfig.direction === "asc" ? -1 : 1;
@@ -302,8 +309,11 @@ export default function ExamResultsPage() {
       title: "Exportação iniciada",
       description: "Os resultados estão sendo exportados para CSV.",
     });
+
+    // Em um sistema real, aqui seria implementada a exportação para CSV
   };
 
+  // Classes únicas para o filtro
   const uniqueClasses = Array.from(
     new Set(exam.students.map((student) => student.class))
   );

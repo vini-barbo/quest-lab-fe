@@ -136,8 +136,6 @@ export function AppHeader() {
           </div>
         </div>
       </nav>
-
-      {/* Mobile Navigation */}
     </header>
   );
 }
