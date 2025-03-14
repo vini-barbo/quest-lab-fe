@@ -61,7 +61,7 @@ export default function RegisterPage() {
       if (formData.role === "professor") {
         router.push("/dashboard");
       } else {
-        router.push("/resolucao");
+        router.push("/prova");
       }
     } catch (error) {
       toast({
