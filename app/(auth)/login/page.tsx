@@ -56,7 +56,7 @@ export default function LoginPage() {
         localStorage.setItem("userRole", "aluno");
         localStorage.setItem("userEmail", formData.email);
         localStorage.setItem("isLoggedIn", "true");
-        router.push("/solve");
+        router.push("/prova");
       } else {
         toast({
           title: "Erro de autenticação",
@@ -144,10 +144,7 @@ export default function LoginPage() {
             </Button>
             <div className="text-center text-sm">
               Não tem uma conta?{" "}
-              <Link
-                href="/auth/register"
-                className="text-primary hover:underline"
-              >
+              <Link href="/registrar" className="text-primary hover:underline">
                 Cadastre-se
               </Link>
             </div>

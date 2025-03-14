@@ -13,11 +13,11 @@ export default function DashboardLayout({
     const userRole = localStorage.getItem("userRole");
 
     if (!isLoggedIn) {
-      redirect("/auth/login");
+      redirect("/login");
     }
 
     if (userRole !== "professor") {
-      redirect("/solve");
+      redirect("/resolucao");
     }
   }
 

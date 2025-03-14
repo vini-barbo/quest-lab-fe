@@ -66,7 +66,7 @@ export default function CreateQuestionPage() {
         description: "A questão foi adicionada ao banco de questões.",
       });
 
-      router.push("/questions");
+      router.push("/questoes");
     } catch (error) {
       toast({
         title: "Erro ao criar questão",
@@ -79,7 +79,7 @@ export default function CreateQuestionPage() {
   };
 
   return (
-    <div className="container max-w-3xl p-4 py-6 md:p-8">
+    <div className="app-main">
       <div className="mb-6">
         <h1 className="text-3xl font-bold tracking-tight">
           Criar Nova Questão
@@ -252,7 +252,7 @@ export default function CreateQuestionPage() {
             <Button
               type="button"
               variant="outline"
-              onClick={() => router.push("/questions")}
+              onClick={() => router.push("/questoes")}
             >
               Cancelar
             </Button>

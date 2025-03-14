@@ -47,7 +47,7 @@ export default function DashboardPage() {
             Bem-vindo, {userName}! Aqui está o desempenho dos seus alunos.
           </p>
         </div>
-        <Link href="/questions/create">
+        <Link href="/questoes/create">
           <Button>
             <Plus className="mr-2 h-4 w-4" />
             Nova Questão

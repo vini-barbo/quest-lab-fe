@@ -61,7 +61,7 @@ export default function RegisterPage() {
       if (formData.role === "professor") {
         router.push("/dashboard");
       } else {
-        router.push("/solve");
+        router.push("/resolucao");
       }
     } catch (error) {
       toast({
@@ -170,7 +170,7 @@ export default function RegisterPage() {
             </Button>
             <div className="text-center text-sm">
               Já tem uma conta?{" "}
-              <Link href="/auth/login" className="text-primary hover:underline">
+              <Link href="/login" className="text-primary hover:underline">
                 Entrar
               </Link>
             </div>

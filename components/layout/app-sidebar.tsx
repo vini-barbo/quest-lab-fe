@@ -79,7 +79,7 @@ export function AppSidebar() {
               )}
               <hr />
               <Link
-                href="/settings"
+                href="/configuracao"
                 className="flex gap-1 hover:!text-primary  hover:!bg-white !text-white rounded p-2
               items-center
               justify-between text-sm font-medium transition-colors"
@@ -166,7 +166,7 @@ export function AppSidebar() {
         <section className="flex flex-col gap-2">
           <hr />
           <Link
-            href="/settings"
+            href="/configuracao"
             className="flex gap-1 hover:!text-primary  hover:!bg-white !text-white rounded p-2
               items-center
               justify-between text-sm font-medium transition-colors"

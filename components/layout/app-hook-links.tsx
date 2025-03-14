@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { Home, FileText, BookOpen, User, Settings } from "lucide-react"; // Importe os ícones desejados
+import {
+  Home,
+  FileText,
+  BookOpen,
+  User,
+  Settings,
+  Paperclip,
+} from "lucide-react"; // Importe os ícones desejados
 
 export function useNavItems() {
   const [userRole, setUserRole] = useState("aluno");
@@ -13,21 +20,22 @@ export function useNavItems() {
     }
   }, []);
 
-  const communNavItems = [
-    { name: "Settings", href: "/settings", icon: <Settings /> },
+  const commonNavItems = [
+    { name: "Provas", href: "/prova", icon: <Paperclip /> },
   ];
 
   const navItems = [
     ...(userRole === "professor"
       ? [
+          ...commonNavItems,
           { name: "Dashboard", href: "/dashboard", icon: <Home /> },
-          { name: "Questões", href: "/questions", icon: <FileText /> },
+          { name: "Questões", href: "/questoes", icon: <FileText /> },
         ]
       : []),
     ...(userRole === "aluno"
       ? [
-          { name: "Questões", href: "/solve", icon: <BookOpen /> },
-          { name: "Progresso", href: "/profile", icon: <User /> },
+          ...commonNavItems,
+          { name: "Progresso", href: "/perfil", icon: <User /> },
         ]
       : []),
   ];

@@ -101,7 +101,7 @@ export function AppHeader() {
           isLoggedIn
             ? userRole === "professor"
               ? "/dashboard"
-              : "/solve"
+              : "/resolucao"
             : "/"
         }
       >

@@ -36,42 +36,42 @@ const mockQuestions = [
     title: "Equação do segundo grau",
     category: "Matemática",
     difficulty: "Médio",
-    createdAt: "2023-10-15",
+    createdAt: "2025-10-15",
   },
   {
     id: 2,
     title: "Análise sintática",
     category: "Português",
     difficulty: "Difícil",
-    createdAt: "2023-10-12",
+    createdAt: "2025-10-12",
   },
   {
     id: 3,
     title: "Sistema solar",
     category: "Ciências",
     difficulty: "Fácil",
-    createdAt: "2023-10-10",
+    createdAt: "2025-10-10",
   },
   {
     id: 4,
     title: "Segunda Guerra Mundial",
     category: "História",
     difficulty: "Médio",
-    createdAt: "2023-10-08",
+    createdAt: "2025-10-08",
   },
   {
     id: 5,
     title: "Capitais da Europa",
     category: "Geografia",
     difficulty: "Médio",
-    createdAt: "2023-10-05",
+    createdAt: "2025-10-05",
   },
   {
     id: 6,
     title: "Verbos irregulares",
     category: "Português",
     difficulty: "Difícil",
-    createdAt: "2023-10-03",
+    createdAt: "2025-10-03",
   },
 ];
 
@@ -125,7 +125,7 @@ export default function QuestionsPage() {
             Gerencie suas questões e crie novas.
           </p>
         </div>
-        <Link href="/questions/create">
+        <Link href="/questoes/create">
           <Button>
             <Plus className="mr-2 h-4 w-4" />
             Nova Questão
@@ -202,7 +202,7 @@ export default function QuestionsPage() {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>
                       <Link
-                        href={`/questions/${question.id}`}
+                        href={`/questoes/${question.id}`}
                         className="flex w-full cursor-pointer items-center"
                       >
                         <Edit className="mr-2 h-4 w-4" />
@@ -250,7 +250,7 @@ export default function QuestionsPage() {
           <p className="text-sm text-muted-foreground">
             Nenhuma questão encontrada. Tente ajustar os filtros ou{" "}
             <Link
-              href="/questions/create"
+              href="/questoes/create"
               className="text-primary hover:underline"
             >
               crie uma nova questão

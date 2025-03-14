@@ -122,7 +122,7 @@ export default function SolvePage() {
   const question = mockQuestions[currentQuestion];
 
   return (
-    <div className="container max-w-4xl p-4 py-6 md:p-8">
+    <div className="app-main">
       <div className="mb-6">
         <h1 className="text-3xl font-bold tracking-tight">Resolver Questões</h1>
         <p className="text-muted-foreground">
@@ -225,7 +225,7 @@ export default function SolvePage() {
       </Card>
 
       <div className="mt-6 flex justify-center">
-        <Link href="/profile">
+        <Link href="/perfil">
           <Button variant="outline">Ver Meu Progresso</Button>
         </Link>
       </div>

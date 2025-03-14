@@ -26,35 +26,35 @@ const mockRecentActivity = [
     id: 1,
     title: "Equação do segundo grau",
     category: "Matemática",
-    date: "2023-10-15",
+    date: "2025-10-15",
     correct: true,
   },
   {
     id: 2,
     title: "Análise sintática",
     category: "Português",
-    date: "2023-10-14",
+    date: "2025-10-14",
     correct: false,
   },
   {
     id: 3,
     title: "Sistema solar",
     category: "Ciências",
-    date: "2023-10-13",
+    date: "2025-10-13",
     correct: true,
   },
   {
     id: 4,
     title: "Segunda Guerra Mundial",
     category: "História",
-    date: "2023-10-12",
+    date: "2025-10-12",
     correct: false,
   },
   {
     id: 5,
     title: "Capitais da Europa",
     category: "Geografia",
-    date: "2023-10-11",
+    date: "2025-10-11",
     correct: true,
   },
 ];
@@ -93,7 +93,6 @@ export default function ProfilePage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <AppHeader />
       <main className="flex-1">
         <div className="app-main">
           <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">

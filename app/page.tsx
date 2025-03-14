@@ -11,12 +11,12 @@ export default function Home() {
           <span className="font-bold">Quest Lab</span>
         </Link>
         <nav className="flex items-center space-x-2">
-          <Link href="/auth/login">
+          <Link href="/login">
             <Button variant="ghost" size="sm">
               Entrar
             </Button>
           </Link>
-          <Link href="/auth/register">
+          <Link href="/registrar">
             <Button size="sm">Cadastrar</Button>
           </Link>
         </nav>
@@ -33,10 +33,10 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col gap-2 min-[400px]:flex-row">
-            <Link href="/auth/register">
+            <Link href="/registrar">
               <Button size="lg">Começar agora</Button>
             </Link>
-            <Link href="/auth/login">
+            <Link href="/login">
               <Button variant="outline" size="lg">
                 Já tenho uma conta
               </Button>
