@@ -387,7 +387,7 @@ export default function CreateExamPage() {
                   <strong>{formData.selectedQuestions.length}</strong>
                 </p>
                 <Link
-                  href="/questions/create"
+                  href="/questoes/criar"
                   className="text-sm text-primary hover:underline"
                 >
                   Criar nova questão

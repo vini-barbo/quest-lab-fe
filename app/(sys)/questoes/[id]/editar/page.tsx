@@ -173,7 +173,7 @@ export default function EditQuestionPage() {
         description: "As alterações foram salvas.",
       });
 
-      router.push("/questions");
+      router.push("/questoes");
     } catch (error) {
       toast({
         title: "Erro ao atualizar questão",
@@ -190,7 +190,7 @@ export default function EditQuestionPage() {
   };
 
   const confirmDiscard = () => {
-    router.push("/questions");
+    router.push("/questoes");
   };
 
   const handleDelete = () => {
@@ -208,7 +208,7 @@ export default function EditQuestionPage() {
         description: "A questão foi removida do banco de questões.",
       });
 
-      router.push("/questions");
+      router.push("/questoes");
     } catch (error) {
       toast({
         title: "Erro ao excluir questão",
@@ -254,7 +254,7 @@ export default function EditQuestionPage() {
         <Button
           variant="outline"
           size="icon"
-          onClick={() => router.push("/questions")}
+          onClick={() => router.push("/questoes")}
         >
           <ChevronLeft className="h-4 w-4" />
         </Button>

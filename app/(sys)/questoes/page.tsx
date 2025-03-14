@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Edit, Plus, Trash2 } from "lucide-react";
+import { Edit, Eye, Plus, BarChart, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -30,48 +30,49 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 
+// Dados simulados
 const mockQuestions = [
   {
     id: 1,
     title: "Equação do segundo grau",
     category: "Matemática",
     difficulty: "Médio",
-    createdAt: "2025-10-15",
+    createdAt: "2023-10-15",
   },
   {
     id: 2,
     title: "Análise sintática",
     category: "Português",
     difficulty: "Difícil",
-    createdAt: "2025-10-12",
+    createdAt: "2023-10-12",
   },
   {
     id: 3,
     title: "Sistema solar",
     category: "Ciências",
     difficulty: "Fácil",
-    createdAt: "2025-10-10",
+    createdAt: "2023-10-10",
   },
   {
     id: 4,
     title: "Segunda Guerra Mundial",
     category: "História",
     difficulty: "Médio",
-    createdAt: "2025-10-08",
+    createdAt: "2023-10-08",
   },
   {
     id: 5,
     title: "Capitais da Europa",
     category: "Geografia",
     difficulty: "Médio",
-    createdAt: "2025-10-05",
+    createdAt: "2023-10-05",
   },
   {
     id: 6,
     title: "Verbos irregulares",
     category: "Português",
     difficulty: "Difícil",
-    createdAt: "2025-10-03",
+    createdAt: "2023-10-03",
   },
 ];
 
@@ -83,6 +84,7 @@ export default function QuestionsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
+  // Aplicar filtros
   useEffect(() => {
     let filtered = [...questions];
 
@@ -113,6 +115,7 @@ export default function QuestionsPage() {
     });
   };
 
+  // Extrair categorias únicas
   const categories = Array.from(new Set(questions.map((q) => q.category)));
   const difficulties = ["Fácil", "Médio", "Difícil"];
 
@@ -172,10 +175,17 @@ export default function QuestionsPage() {
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {filteredQuestions.map((question) => (
-          <Card key={question.id}>
+          <Card key={question.id} className="group">
             <CardHeader className="pb-2">
               <div className="flex items-start justify-between">
-                <CardTitle className="text-lg">{question.title}</CardTitle>
+                <CardTitle className="text-lg">
+                  <Link
+                    href={`/questoes/${question.id}/visualizar`}
+                    className="hover:text-primary transition-colors"
+                  >
+                    {question.title}
+                  </Link>
+                </CardTitle>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="-mt-1 -mr-2">
@@ -202,13 +212,32 @@ export default function QuestionsPage() {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>
                       <Link
-                        href={`/questoes/${question.id}`}
+                        href={`/questoes/${question.id}/visualizar`}
+                        className="flex w-full cursor-pointer items-center"
+                      >
+                        <Eye className="mr-2 h-4 w-4" />
+                        Visualizar
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        href={`/questoes/${question.id}/editar`}
                         className="flex w-full cursor-pointer items-center"
                       >
                         <Edit className="mr-2 h-4 w-4" />
                         Editar
                       </Link>
                     </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        href={`/questoes/${question.id}/dashboard`}
+                        className="flex w-full cursor-pointer items-center"
+                      >
+                        <BarChart className="mr-2 h-4 w-4" />
+                        Estatísticas
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
                     <DropdownMenuItem
                       className="flex cursor-pointer items-center text-destructive focus:text-destructive"
                       onClick={() => handleDelete(question.id)}
@@ -239,6 +268,27 @@ export default function QuestionsPage() {
                 >
                   {question.difficulty}
                 </Badge>
+              </div>
+
+              <div className="mt-4 flex gap-2 ">
+                <Link href={`/questoes/${question.id}/visualizar`}>
+                  <Button variant="outline" size="sm" className="h-8 px-2">
+                    <Eye className="h-3.5 w-3.5 mr-1" />
+                    Ver
+                  </Button>
+                </Link>
+                <Link href={`/questoes/${question.id}/editar`}>
+                  <Button variant="outline" size="sm" className="h-8 px-2">
+                    <Edit className="h-3.5 w-3.5 mr-1" />
+                    Editar
+                  </Button>
+                </Link>
+                <Link href={`/questoes/${question.id}/dashboard`}>
+                  <Button variant="outline" size="sm" className="h-8 px-2">
+                    <BarChart className="h-3.5 w-3.5 mr-1" />
+                    Stats
+                  </Button>
+                </Link>
               </div>
             </CardContent>
           </Card>

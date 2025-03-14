@@ -451,7 +451,7 @@ export default function EditExamPage() {
                     Atualize as questões que farão parte desta prova.
                   </CardDescription>
                 </div>
-                <Link href="/questions/create">
+                <Link href="/questoes/criar">
                   <Button
                     variant="outline"
                     size="sm"

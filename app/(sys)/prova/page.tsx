@@ -813,7 +813,7 @@ export default function ExamsPage() {
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
                         <Link
-                          href={`/prova/${exam.id}/result`}
+                          href={`/prova/${exam.id}/resultado`}
                           className="flex w-full cursor-pointer items-center"
                         >
                           <Users className="mr-2 h-4 w-4" />
@@ -822,7 +822,7 @@ export default function ExamsPage() {
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <Link
-                          href={`/prova/${exam.id}/edit`}
+                          href={`/prova/${exam.id}/editar`}
                           className="flex w-full cursor-pointer items-center"
                         >
                           <Edit className="mr-2 h-4 w-4" />
@@ -915,7 +915,9 @@ export default function ExamsPage() {
                   <Link href={`/prova/${exam.id}/editar`}>Editar</Link>
                 </Button>
                 <Button asChild>
-                  <Link href={`/prova/${exam.id}/resultado`}>Ver Resultados</Link>
+                  <Link href={`/prova/${exam.id}/resultado`}>
+                    Ver Resultados
+                  </Link>
                 </Button>
               </CardFooter>
             </Card>
