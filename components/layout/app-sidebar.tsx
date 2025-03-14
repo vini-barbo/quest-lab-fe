@@ -41,6 +41,7 @@ export function AppSidebar() {
     if (typeof window !== "undefined") {
       setIsLoggedIn(!!localStorage.getItem("isLoggedIn"));
       setUserRole(localStorage.getItem("userRole") || "aluno");
+      setUserName(localStorage.getItem("userName") || "Usuario");
       setUserEmail(localStorage.getItem("userEmail") || "usuario@example.com");
     }
   }, []);
