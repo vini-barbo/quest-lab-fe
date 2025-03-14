@@ -30,7 +30,6 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 
-
 const mockQuestions = [
   {
     id: 1,
@@ -84,7 +83,6 @@ export default function QuestionsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
-  
   useEffect(() => {
     let filtered = [...questions];
 
@@ -115,7 +113,6 @@ export default function QuestionsPage() {
     });
   };
 
-  
   const categories = Array.from(new Set(questions.map((q) => q.category)));
   const difficulties = ["Fácil", "Médio", "Difícil"];
 
@@ -190,7 +187,7 @@ export default function QuestionsPage() {
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="-mt-1 -mr-2">
                       <svg
-                        xmlns="http:
+                        xmlns="http://www.w3.org/2000/svg"
                         width="24"
                         height="24"
                         viewBox="0 0 24 24"
