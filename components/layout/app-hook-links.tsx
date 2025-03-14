@@ -6,7 +6,7 @@ import {
   User,
   Settings,
   Paperclip,
-} from "lucide-react"; // Importe os ícones desejados
+} from "lucide-react";
 
 export function useNavItems() {
   const [userRole, setUserRole] = useState("aluno");

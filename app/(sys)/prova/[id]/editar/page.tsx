@@ -43,7 +43,6 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-// Dados simulados
 const mockClasses = [
   { id: 1, name: "1º Ano A" },
   { id: 2, name: "1º Ano B" },
@@ -95,7 +94,6 @@ const mockQuestions = [
   { id: 8, title: "Tabela periódica", subject: "Química", difficulty: "Médio" },
 ];
 
-// Dados simulados da prova para edição
 const mockExamData = {
   id: 1,
   title: "Simulado Nacional de Matemática",
@@ -105,8 +103,8 @@ const mockExamData = {
   duration: "120",
   dueDate: "2024-06-15",
   createdDate: "2024-05-01",
-  selectedClasses: [1, 2], // IDs das turmas selecionadas
-  selectedQuestions: [1, 2, 7], // IDs das questões selecionadas
+  selectedClasses: [1, 2],
+  selectedQuestions: [1, 2, 7],
   status: "active",
 };
 
@@ -127,15 +125,12 @@ export default function EditExamPage() {
     selectedQuestions: [] as number[],
   });
 
-  // Simular carregamento dos dados da prova
   useEffect(() => {
     const loadExamData = async () => {
       setIsLoadingData(true);
       try {
-        // Em um sistema real, aqui seria feita uma requisição para obter os dados da prova
         await new Promise((resolve) => setTimeout(resolve, 800));
 
-        // Formatar a data para o formato esperado pelo input type="date"
         const dueDate = new Date(mockExamData.dueDate)
           .toISOString()
           .split("T")[0];
@@ -217,7 +212,6 @@ export default function EditExamPage() {
     setIsLoading(true);
 
     try {
-      // Validação básica
       if (
         !formData.title ||
         !formData.subject ||
@@ -235,7 +229,6 @@ export default function EditExamPage() {
         return;
       }
 
-      // Simulação de envio
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       toast({
@@ -263,7 +256,6 @@ export default function EditExamPage() {
     router.push("/prova");
   };
 
-  // Formatar a data para exibição
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       day: "2-digit",

@@ -46,7 +46,6 @@ export default function SettingsPage() {
   });
 
   useEffect(() => {
-    // Carregar dados do usuário do localStorage
     const name = localStorage.getItem("userName") || "";
     const email = localStorage.getItem("userEmail") || "";
     const role = localStorage.getItem("userRole") || "";
@@ -76,10 +75,8 @@ export default function SettingsPage() {
     setIsLoading(true);
 
     try {
-      // Simulação de salvamento
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // Atualizar localStorage
       localStorage.setItem("userName", profileData.name);
       localStorage.setItem("userEmail", profileData.email);
 
@@ -102,7 +99,6 @@ export default function SettingsPage() {
     setIsLoading(true);
 
     try {
-      // Validação básica
       if (passwordData.newPassword !== passwordData.confirmPassword) {
         toast({
           title: "Senhas não coincidem",
@@ -113,7 +109,6 @@ export default function SettingsPage() {
         return;
       }
 
-      // Simulação de salvamento
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       toast({
@@ -121,7 +116,6 @@ export default function SettingsPage() {
         description: "Sua senha foi atualizada com sucesso.",
       });
 
-      // Limpar campos
       setPasswordData({
         currentPassword: "",
         newPassword: "",
@@ -142,7 +136,6 @@ export default function SettingsPage() {
     setIsLoading(true);
 
     try {
-      // Simulação de salvamento
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       toast({

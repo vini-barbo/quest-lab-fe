@@ -32,7 +32,6 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 
-// Dados simulados
 const mockClasses = [
   { id: 1, name: "1º Ano A" },
   { id: 2, name: "1º Ano B" },
@@ -152,7 +151,6 @@ export default function CreateExamPage() {
     setIsLoading(true);
 
     try {
-      // Validação básica
       if (
         !formData.title ||
         !formData.subject ||
@@ -170,7 +168,6 @@ export default function CreateExamPage() {
         return;
       }
 
-      // Simulação de envio
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       toast({

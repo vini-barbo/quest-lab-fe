@@ -45,7 +45,6 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 
-// Dados simulados da questão
 const mockQuestionData = {
   id: 1,
   title: "Equação do segundo grau",
@@ -64,13 +63,12 @@ const mockQuestionData = {
   createdAt: "2023-10-15",
   totalAnswers: 248,
   correctAnswers: 186,
-  averageTime: 45, // segundos
-  difficultyScore: 0.75, // 0 a 1, onde 1 é mais fácil
+  averageTime: 45,
+  difficultyScore: 0.75,
   usedInExams: 8,
   lastUsed: "2024-05-10",
 };
 
-// Dados simulados de respostas por opção (para questões de múltipla escolha)
 const mockOptionStats = [
   {
     option: "x = (-b ± √(b² - 4ac)) / 2a",
@@ -98,7 +96,6 @@ const mockOptionStats = [
   },
 ];
 
-// Dados simulados de desempenho por turma
 const mockClassPerformance = [
   {
     id: 1,
@@ -142,7 +139,6 @@ const mockClassPerformance = [
   },
 ];
 
-// Dados simulados de histórico de uso em provas
 const mockExamHistory = [
   {
     id: 1,
@@ -171,7 +167,6 @@ const mockExamHistory = [
   { id: 5, title: "Simulado Geral", date: "2023-09-05", correctPercentage: 65 },
 ];
 
-// Dados simulados de tendência de acertos ao longo do tempo
 const mockTrendData = [
   { month: "Jan", correctPercentage: 65 },
   { month: "Fev", correctPercentage: 68 },
@@ -180,7 +175,6 @@ const mockTrendData = [
   { month: "Mai", correctPercentage: 78 },
 ];
 
-// Dados simulados de questões correlacionadas
 const mockCorrelatedQuestions = [
   {
     id: 7,
@@ -211,7 +205,6 @@ export default function QuestionStatsPage() {
   const [classFilter, setClassFilter] = useState("all");
 
   useEffect(() => {
-    // Simular carregamento de dados
     const loadData = async () => {
       setIsLoading(true);
       await new Promise((resolve) => setTimeout(resolve, 800));
@@ -228,13 +221,11 @@ export default function QuestionStatsPage() {
     });
   };
 
-  // Calcular estatísticas
   const correctPercentage = Math.round(
     (mockQuestionData.correctAnswers / mockQuestionData.totalAnswers) * 100
   );
   const incorrectPercentage = 100 - correctPercentage;
 
-  // Formatar tempo médio
   const formatTime = (seconds: number) => {
     if (seconds < 60) return `${seconds} segundos`;
     const minutes = Math.floor(seconds / 60);
@@ -242,7 +233,6 @@ export default function QuestionStatsPage() {
     return `${minutes}m ${remainingSeconds}s`;
   };
 
-  // Determinar nível de dificuldade com base no score
   const getDifficultyLevel = (score: number) => {
     if (score >= 0.8) return { label: "Fácil", color: "text-green-500" };
     if (score >= 0.6) return { label: "Médio", color: "text-yellow-500" };
@@ -251,7 +241,6 @@ export default function QuestionStatsPage() {
 
   const difficultyInfo = getDifficultyLevel(mockQuestionData.difficultyScore);
 
-  // Formatar data
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       day: "2-digit",

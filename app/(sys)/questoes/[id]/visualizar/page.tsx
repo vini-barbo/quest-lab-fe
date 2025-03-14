@@ -32,7 +32,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
-// Dados simulados da questão
 const mockQuestionData = {
   id: 1,
   title: "Equação do segundo grau",
@@ -54,7 +53,7 @@ const mockQuestionData = {
   createdAt: "2023-10-15",
   lastUpdated: "2024-01-20",
   author: "Maria Silva",
-  estimatedTime: 3, // minutos
+  estimatedTime: 3,
   usedInExams: 8,
   relatedContent: [
     { id: 7, title: "Funções trigonométricas" },
@@ -76,15 +75,12 @@ export default function QuestionViewPage() {
   const [userRole, setUserRole] = useState<string | null>(null);
 
   useEffect(() => {
-    // Verificar o papel do usuário
     const role = localStorage.getItem("userRole");
     setUserRole(role);
 
-    // Simular carregamento de dados
     const loadData = async () => {
       setIsLoading(true);
       try {
-        // Em um sistema real, aqui seria feita uma requisição para obter os dados da questão
         await new Promise((resolve) => setTimeout(resolve, 800));
         setQuestion(mockQuestionData);
       } catch (error) {
@@ -130,7 +126,6 @@ export default function QuestionViewPage() {
     window.print();
   };
 
-  // Formatar data
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       day: "2-digit",

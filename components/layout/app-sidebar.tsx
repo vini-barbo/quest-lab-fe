@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useNavItems } from "./app-hook-links";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { LogOut, Menu, Settings } from "lucide-react";
 import { LogOutIcon } from "lucide-react";
@@ -23,6 +23,7 @@ export function AppSidebar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
 
+  const router = useRouter();
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("userRole");
@@ -30,7 +31,7 @@ export function AppSidebar() {
     localStorage.removeItem("userName");
     setIsLoggedIn(false);
     setUserRole(null);
-    // router.push("/");
+    router.push("/");
   };
 
   return (

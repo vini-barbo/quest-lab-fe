@@ -36,7 +36,6 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-// Dados simulados da questão para edição
 const mockQuestionData = {
   id: 1,
   title: "Equação do segundo grau",
@@ -52,7 +51,7 @@ const mockQuestionData = {
     "x = (-b ± √(b² - 4ac)) / a",
   ],
   correctOption: "0",
-  correctAnswer: "", // Para questões dissertativas
+  correctAnswer: "",
   createdAt: "2023-10-15",
 };
 
@@ -72,15 +71,13 @@ export default function EditQuestionPage() {
     question: "",
     options: ["", "", "", ""],
     correctOption: "0",
-    correctAnswer: "", // Para questões dissertativas
+    correctAnswer: "",
   });
 
-  // Simular carregamento dos dados da questão
   useEffect(() => {
     const loadQuestionData = async () => {
       setIsLoadingData(true);
       try {
-        // Em um sistema real, aqui seria feita uma requisição para obter os dados da questão
         await new Promise((resolve) => setTimeout(resolve, 800));
 
         setFormData({
@@ -126,7 +123,6 @@ export default function EditQuestionPage() {
     setIsLoading(true);
 
     try {
-      // Validação básica
       if (
         !formData.title ||
         !formData.category ||
@@ -142,7 +138,6 @@ export default function EditQuestionPage() {
         return;
       }
 
-      // Validação específica para o tipo de questão
       if (questionType === "multiple-choice") {
         const emptyOptions = formData.options.some((option) => !option.trim());
         if (emptyOptions) {
@@ -165,7 +160,6 @@ export default function EditQuestionPage() {
         return;
       }
 
-      // Simulação de envio
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       toast({
@@ -200,7 +194,6 @@ export default function EditQuestionPage() {
   const confirmDelete = async () => {
     setIsLoading(true);
     try {
-      // Simulação de exclusão
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       toast({
@@ -219,7 +212,6 @@ export default function EditQuestionPage() {
     }
   };
 
-  // Formatar a data para exibição
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       day: "2-digit",

@@ -59,14 +59,13 @@ import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 
-// Dados simulados para alunos
 const mockPendingExams = [
   {
     id: 1,
     title: "Simulado Nacional de Matemática",
     subject: "Matemática",
     dueDate: "2024-06-15",
-    duration: 120, // minutos
+    duration: 120,
     questionsCount: 30,
     difficulty: "Médio",
     status: "pending",
@@ -76,7 +75,7 @@ const mockPendingExams = [
     title: "Avaliação Trimestral de Português",
     subject: "Português",
     dueDate: "2024-06-10",
-    duration: 90, // minutos
+    duration: 90,
     questionsCount: 25,
     difficulty: "Difícil",
     status: "pending",
@@ -86,7 +85,7 @@ const mockPendingExams = [
     title: "Simulado de Ciências Naturais",
     subject: "Ciências",
     dueDate: "2024-06-20",
-    duration: 60, // minutos
+    duration: 60,
     questionsCount: 20,
     difficulty: "Fácil",
     status: "pending",
@@ -99,10 +98,10 @@ const mockCompletedExams = [
     title: "Avaliação Bimestral de História",
     subject: "História",
     completedDate: "2024-05-20",
-    duration: 90, // minutos
+    duration: 90,
     questionsCount: 25,
     correctAnswers: 18,
-    score: 72, // porcentagem
+    score: 72,
     status: "completed",
   },
   {
@@ -110,10 +109,10 @@ const mockCompletedExams = [
     title: "Simulado de Geografia",
     subject: "Geografia",
     completedDate: "2024-05-15",
-    duration: 60, // minutos
+    duration: 60,
     questionsCount: 20,
     correctAnswers: 16,
-    score: 80, // porcentagem
+    score: 80,
     status: "completed",
   },
   {
@@ -121,10 +120,10 @@ const mockCompletedExams = [
     title: "Avaliação de Física",
     subject: "Física",
     completedDate: "2024-05-10",
-    duration: 75, // minutos
+    duration: 75,
     questionsCount: 15,
     correctAnswers: 10,
-    score: 67, // porcentagem
+    score: 67,
     status: "completed",
   },
   {
@@ -132,15 +131,15 @@ const mockCompletedExams = [
     title: "Simulado de Química",
     subject: "Química",
     completedDate: "2024-05-05",
-    duration: 60, // minutos
+    duration: 60,
     questionsCount: 20,
     correctAnswers: 14,
-    score: 70, // porcentagem
+    score: 70,
     status: "completed",
   },
 ];
 
-// Dados simulados para professores
+
 const mockTeacherExams = [
   {
     id: 1,
@@ -148,7 +147,7 @@ const mockTeacherExams = [
     subject: "Matemática",
     createdDate: "2024-05-01",
     dueDate: "2024-06-15",
-    duration: 120, // minutos
+    duration: 120,
     questionsCount: 30,
     difficulty: "Médio",
     classes: [
@@ -163,7 +162,7 @@ const mockTeacherExams = [
     subject: "Português",
     createdDate: "2024-05-05",
     dueDate: "2024-06-10",
-    duration: 90, // minutos
+    duration: 90,
     questionsCount: 25,
     difficulty: "Difícil",
     classes: [
@@ -178,7 +177,7 @@ const mockTeacherExams = [
     subject: "Ciências",
     createdDate: "2024-05-10",
     dueDate: "2024-06-20",
-    duration: 60, // minutos
+    duration: 60,
     questionsCount: 20,
     difficulty: "Fácil",
     classes: [
@@ -193,7 +192,7 @@ const mockTeacherExams = [
     subject: "História",
     createdDate: "2024-04-15",
     dueDate: "2024-05-20",
-    duration: 90, // minutos
+    duration: 90,
     questionsCount: 25,
     difficulty: "Médio",
     classes: [
@@ -209,7 +208,7 @@ const mockTeacherExams = [
     subject: "Geografia",
     createdDate: "2024-04-10",
     dueDate: "2024-05-15",
-    duration: 60, // minutos
+    duration: 60,
     questionsCount: 20,
     difficulty: "Médio",
     classes: [
@@ -221,7 +220,7 @@ const mockTeacherExams = [
   },
 ];
 
-// Lista de disciplinas para filtro
+
 const subjects = [
   "Todas",
   "Matemática",
@@ -344,7 +343,7 @@ export default function ExamsPage() {
   const confirmDeleteExam = () => {
     setShowDeleteDialog(false);
 
-    // Remover a prova da lista
+    
     setTeacherExams(
       teacherExams.filter((exam) => exam.id !== selectedExamToDelete.id)
     );
@@ -394,7 +393,7 @@ export default function ExamsPage() {
     return "text-red-500";
   };
 
-  // Renderização para alunos
+  
   const renderStudentView = () => (
     <>
       <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
@@ -660,7 +659,7 @@ export default function ExamsPage() {
               <div className="rounded-md bg-yellow-50 p-3 text-sm text-yellow-800 dark:bg-yellow-950/50 dark:text-yellow-400">
                 <div className="flex items-start gap-2">
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns="http:
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -701,7 +700,6 @@ export default function ExamsPage() {
     </>
   );
 
-  // Renderização para professores
   const renderTeacherView = () => (
     <>
       <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
